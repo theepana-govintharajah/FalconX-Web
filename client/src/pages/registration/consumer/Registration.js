@@ -1,30 +1,15 @@
 import React from "react";
+import Consumer from "../../../services/Consumer";
 import { useState, useEffect } from "react";
 import { useReducer } from "react";
 import StextField from "../../../components/StextField";
-import Sbutton from "../../../components/Sbutton";
+
 import Button from "@mui/material//Button";
-import TextField from "@mui/material/TextField";
-import FormHelperText from "@mui/material/FormHelperText";
 
-import {
-  Grid,
-  Container,
-  Paper,
-  Avatar,
-  Typography,
-  FormControl,
-  Select,
-  InputLabel,
-  MenuItem,
-} from "@mui/material";
+import { Grid, Container, Paper, Avatar, Typography } from "@mui/material";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
-import VerifiedIcon from "@mui/icons-material/Verified";
-import SendIcon from "@mui/icons-material/Send";
-import useStyles from "./styles";
 
-import { Formik } from "formik";
-import * as Yup from "yup";
+import useStyles from "./styles";
 
 const Registration = () => {
   const [open, setOpen] = useState(false);
@@ -64,10 +49,42 @@ const Registration = () => {
       (/^\d+$/.test(inputs.mobile)
         ? ""
         : "Phone number is not valid. It can only contains numbers") ||
-      (inputs.mobile.length > 9 ? "" : "Minimum 10 numbers required.") ||
-      (inputs.mobile.length < 11
+      (inputs.mobile.length > 8 ? "" : "Minimum 10 numbers required.") ||
+      (inputs.mobile.length < 12
         ? ""
         : "Mobile number cannot exceed 10 digits.");
+
+    temp.NIC =
+      (inputs.NIC ? "" : "This field is required.") ||
+      (inputs.NIC.length > 9 ? "" : "Minimum 10 numbers required.") ||
+      (inputs.NIC.length < 16 ? "" : "NIC cannot exceed 15 digits.");
+
+    temp.password =
+      (inputs.password ? "" : "This field is required.") ||
+      (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/.test(
+        inputs.password
+      )
+        ? ""
+        : "password should contain at least one upper case letter, one lower case letter, one numerical number and a special character") ||
+      (inputs.password.length > 7 ? "" : "Minimum 8 characters required.");
+
+    temp.district =
+      (inputs.district ? "" : "This field is required.") ||
+      (/^[A-Za-z]*$/.test(inputs.district)
+        ? ""
+        : "District can only contain letters.") ||
+      (inputs.district.length > 2 ? "" : "Minimum 3 characters required.");
+
+    temp.city =
+      (inputs.city ? "" : "This field is required.") ||
+      (/^[A-Za-z]*$/.test(inputs.city)
+        ? ""
+        : "City can only contain letters.") ||
+      (inputs.city.length > 2 ? "" : "Minimum 3 characters required.");
+
+    temp.street =
+      (inputs.street ? "" : "This field is required.") ||
+      (inputs.street.length > 2 ? "" : "Minimum 3 characters required.");
 
     setErrors({
       ...temp,
@@ -78,6 +95,12 @@ const Registration = () => {
   //when submitting the form, page will be autoreload, and details will be posted in secondary user collection.
   const onSubmit = (e) => {
     e.preventDefault();
+    if (validate()) {
+      console.log("validation");
+      Consumer.addNew(inputs).then(function (response) {
+        console.log(response.data);
+      });
+    }
   };
 
   return (
@@ -131,7 +154,7 @@ const Registration = () => {
               name="NIC"
               value={inputs.NIC || ""}
               onChange={handleChange}
-              // error={errors.NIC}
+              error={errors.NIC}
             />
 
             <StextField
@@ -140,7 +163,7 @@ const Registration = () => {
               name="district"
               value={inputs.district || ""}
               onChange={handleChange}
-              // error={errors.district}
+              error={errors.district}
             />
 
             <StextField
@@ -149,7 +172,7 @@ const Registration = () => {
               name="city"
               value={inputs.city || ""}
               onChange={handleChange}
-              // error={errors.district}
+              error={errors.city}
             />
 
             <StextField
@@ -158,7 +181,7 @@ const Registration = () => {
               name="street"
               value={inputs.street || ""}
               onChange={handleChange}
-              // error={errors.district}
+              error={errors.street}
             />
 
             <StextField
@@ -167,7 +190,7 @@ const Registration = () => {
               value={inputs.password}
               onChange={handleChange}
               type="password"
-              //error={errors.password}
+              error={errors.password}
             />
 
             <Grid item xs={12}>
@@ -176,19 +199,10 @@ const Registration = () => {
                 color="primary"
                 style={{ width: "100%" }}
                 onClick={onSubmit}
-                // disabled={!(dirty && isValid)}
               >
                 Register
               </Button>
             </Grid>
-
-            {/* <Sbutton
-              text="Submit"
-              type="submit"
-              onClick={onSubmit}
-              btnWidth="20%"
-              marginRight="6%"
-            /> */}
           </Grid>
         </form>
       </Paper>

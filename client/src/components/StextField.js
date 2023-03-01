@@ -1,7 +1,15 @@
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
-const StextField = ({ label, name, value, onChange, type }) => {
+const StextField = ({
+  label,
+  name,
+  value,
+  onChange,
+  type,
+  ref,
+  error = null,
+}) => {
   return (
     <div>
       <Box
@@ -27,6 +35,8 @@ const StextField = ({ label, name, value, onChange, type }) => {
           value={value}
           onChange={onChange}
           type={type}
+          ref={ref}
+          {...(error && { error: true, helperText: error })}
           // sx={{ marginLeft: "10rem" }}
         />
       </Box>
