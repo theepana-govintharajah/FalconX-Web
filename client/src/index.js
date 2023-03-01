@@ -7,12 +7,14 @@ import ConsumerRegistration from "./pages/registration/consumer/ConsumerRegistra
 import reportWebVitals from "./reportWebVitals";
 import DeliveryAgentRegistration from "./pages/registration/deliveryAgent/DeliveryAgentRegistration";
 import EmployeeRegistration from "./pages/registration/employee/EmployeeRegistration";
+import ShopRegistration from "./pages/registration/shop/ShopRegistration";
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <Admin /> */}
     {/* <Employee /> */}
-    <EmployeeRegistration />
+    <ShopRegistration />
+    {/* <EmployeeRegistration /> */}
     {/* <DeliveryAgentRegistration /> */}
     {/* <ConsumerRegistration /> */}
   </React.StrictMode>,
