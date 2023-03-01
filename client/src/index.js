@@ -6,12 +6,14 @@ import Employee from "./Employee";
 import ConsumerRegistration from "./pages/registration/consumer/ConsumerRegistration";
 import reportWebVitals from "./reportWebVitals";
 import DeliveryAgentRegistration from "./pages/registration/deliveryAgent/DeliveryAgentRegistration";
+import EmployeeRegistration from "./pages/registration/employee/EmployeeRegistration";
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <Admin /> */}
     {/* <Employee /> */}
-    <DeliveryAgentRegistration />
+    <EmployeeRegistration />
+    {/* <DeliveryAgentRegistration /> */}
     {/* <ConsumerRegistration /> */}
   </React.StrictMode>,
   document.getElementById("root")

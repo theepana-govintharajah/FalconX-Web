@@ -1,5 +1,5 @@
 import React from "react";
-import Consumer from "../../../services/Consumer";
+import Employee from "../../../services/Employee";
 import { useState, useEffect } from "react";
 import { useReducer } from "react";
 import StextField from "../../../components/StextField";
@@ -74,17 +74,6 @@ const Registration = () => {
         : "District can only contain letters.") ||
       (inputs.district.length > 2 ? "" : "Minimum 3 characters required.");
 
-    temp.city =
-      (inputs.city ? "" : "This field is required.") ||
-      (/^[A-Za-z]*$/.test(inputs.city)
-        ? ""
-        : "City can only contain letters.") ||
-      (inputs.city.length > 2 ? "" : "Minimum 3 characters required.");
-
-    temp.street =
-      (inputs.street ? "" : "This field is required.") ||
-      (inputs.street.length > 2 ? "" : "Minimum 3 characters required.");
-
     setErrors({
       ...temp,
     });
@@ -96,7 +85,7 @@ const Registration = () => {
     e.preventDefault();
     if (validate()) {
       console.log("validation");
-      Consumer.addNew(inputs).then(function (response) {
+      Employee.addNew(inputs).then(function (response) {
         console.log(response.data);
         window.location.reload(false);
       });
@@ -109,7 +98,7 @@ const Registration = () => {
         <Avatar className={classes.avatar}>
           <AppRegistrationIcon />
         </Avatar>
-        <Typography variant="h5">Register as Consumer !</Typography>
+        <Typography variant="h5">Add New Employee To FalconX!</Typography>
         <form className={classes.form}>
           <Grid container spacing={2}>
             <StextField
@@ -161,24 +150,6 @@ const Registration = () => {
               value={inputs.district || ""}
               onChange={handleChange}
               error={errors.district}
-            />
-
-            <StextField
-              id="city"
-              label="City"
-              name="city"
-              value={inputs.city || ""}
-              onChange={handleChange}
-              error={errors.city}
-            />
-
-            <StextField
-              id="street"
-              label="Street"
-              name="street"
-              value={inputs.street || ""}
-              onChange={handleChange}
-              error={errors.street}
             />
 
             <StextField
