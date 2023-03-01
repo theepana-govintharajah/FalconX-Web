@@ -1,8 +1,10 @@
 import React from "react";
-import Consumer from "../../../services/Consumer";
+import DeliveryAgent from "../../../services/DeliveryAgent";
 import { useState, useEffect } from "react";
 import { useReducer } from "react";
 import StextField from "../../../components/StextField";
+import Sselect from "../../../components/Sselect";
+import * as SelectList from "../../../components/SelectList";
 
 import Button from "@mui/material//Button";
 
@@ -81,9 +83,21 @@ const Registration = () => {
         : "City can only contain letters.") ||
       (inputs.city.length > 2 ? "" : "Minimum 3 characters required.");
 
-    temp.street =
-      (inputs.street ? "" : "This field is required.") ||
-      (inputs.street.length > 2 ? "" : "Minimum 3 characters required.");
+    temp.vehicleNumber =
+      (inputs.vehicleNumber ? "" : "This field is required.") ||
+      (inputs.vehicleNumber.length > 6
+        ? ""
+        : "Minimum 7 characters required.") ||
+      (inputs.vehicleNumber.length < 16 ? "" : "Cannot exceed 15 characters.");
+
+    temp.drivingLicenseNumber =
+      (inputs.drivingLicenseNumber ? "" : "This field is required.") ||
+      (inputs.drivingLicenseNumber.length > 9
+        ? ""
+        : "Minimum 10 characters required.") ||
+      (inputs.drivingLicenseNumber.length < 16
+        ? ""
+        : "Cannot exceed 15 characters.");
 
     setErrors({
       ...temp,
@@ -96,7 +110,7 @@ const Registration = () => {
     e.preventDefault();
     if (validate()) {
       console.log("validation");
-      Consumer.addNew(inputs).then(function (response) {
+      DeliveryAgent.addNew(inputs).then(function (response) {
         console.log(response.data);
         window.location.reload(false);
       });
@@ -104,15 +118,12 @@ const Registration = () => {
   };
 
   return (
-    // <Typography variant="h5" color={"white"} textAlign={"center"}>
-    //   Register New Consumer!
-    // </Typography>
     <Container component="main" maxWidth="lg">
       <Paper className={classes.paper} elevation={3}>
         <Avatar className={classes.avatar}>
           <AppRegistrationIcon />
         </Avatar>
-        <Typography variant="h5">Register as Consumer !</Typography>
+        <Typography variant="h5">Register as Delivery Agent !</Typography>
         <form className={classes.form}>
           <Grid container spacing={2}>
             <StextField
@@ -176,21 +187,36 @@ const Registration = () => {
             />
 
             <StextField
-              id="street"
-              label="Street"
-              name="street"
-              value={inputs.street || ""}
-              onChange={handleChange}
-              error={errors.street}
-            />
-
-            <StextField
               label="Password"
               name="password"
               value={inputs.password}
               onChange={handleChange}
               type="password"
               error={errors.password}
+            />
+
+            <Sselect
+              name="vehicleType"
+              label="Vehicle Type"
+              value={inputs.vehicleType || ""}
+              onChange={handleChange}
+              options={SelectList.getVehicleCollection()}
+            />
+
+            <StextField
+              label="Vehicle Number"
+              name="vehicleNumber"
+              value={inputs.vehicleNumber}
+              onChange={handleChange}
+              error={errors.vehicleNumber}
+            />
+
+            <StextField
+              label="Driving License Number"
+              name="drivingLicenseNumber"
+              value={inputs.drivingLicenseNumber}
+              onChange={handleChange}
+              error={errors.drivingLicenseNumber}
             />
 
             <Grid item xs={12}>
