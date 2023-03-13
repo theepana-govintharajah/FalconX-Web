@@ -15,7 +15,6 @@ const DeliveryAgentList = () => {
     },
   };
 
-  //Retrieving all job types in jobTypeCategory collection. It is done through the connection present in JobCategory in service folder.
   const fetchUsers = () => {
     DeliveryAgent.fetchDeliveryAgents()
       .then((response) => {

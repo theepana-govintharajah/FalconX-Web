@@ -3,11 +3,18 @@ import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import Sbutton from "../../Sbutton";
+import { confirm } from "react-confirm-box";
 
 const Shoplist = () => {
   const [shops, setShops] = useState([]);
 
-  //Retrieving all job types in jobTypeCategory collection. It is done through the connection present in JobCategory in service folder.
+  const options = {
+    labels: {
+      confirmable: "Confirm",
+      cancellable: "Cancel",
+    },
+  };
+
   const fetchShops = () => {
     Shop.fetchShops()
       .then((response) => {
@@ -16,6 +23,46 @@ const Shoplist = () => {
       .catch((e) => {
         console.log(e);
       });
+  };
+
+  const disable = async (e, fn, ln) => {
+    //confirmation dialogue box
+    const result = await confirm(
+      "Are you sure to disable " + fn + " " + ln + " ?",
+      options
+    );
+    //if ok is pressed in confirmation dialogue, disabling function will be called
+    if (result) {
+      Shop.disableEnableShop(e)
+        .then(() => {
+          fetchShops();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      return;
+    }
+    //if cancel is pressed in confirmation dialogue box
+    console.log("You click No!");
+  };
+
+  //on click function to Enable third party account and auto rerender of fetchUsers() after button click to see the change
+  const Enable = async (e, fn, ln) => {
+    const result = await confirm(
+      "Are you sure to enable " + fn + " " + ln + " ?",
+      options
+    );
+    if (result) {
+      Shop.disableEnableShop(e)
+        .then(() => {
+          fetchShops();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      return;
+    }
+    console.log("You click No!");
   };
 
   useEffect(() => {
@@ -29,6 +76,7 @@ const Shoplist = () => {
       district: shop.address.district,
       mobile: shop.mobile,
       email: shop.email,
+      isDisabled: shop.isDisabled,
     };
   });
 
@@ -48,9 +96,32 @@ const Shoplist = () => {
             <Link to="/admin/jobs/jobEdit" state={params.row} className="link">
               <Sbutton text="View" btnWidth="70px" marginRight="10px" />
             </Link>
-            <Link to="/admin/jobs/jobEdit" state={params.row} className="link">
-              <Sbutton text="Disable" btnWidth="70px" marginLeft="20px" />
-            </Link>
+            {params.row.isDisabled === false && (
+              <Sbutton
+                text="Disable"
+                btnWidth="15ch"
+                onClick={() =>
+                  disable(
+                    params.row.id,
+                    params.row.name.fName,
+                    params.row.name.lName
+                  )
+                }
+              />
+            )}
+            {params.row.isDisabled === true && (
+              <Sbutton
+                text="Enable"
+                btnWidth="15ch"
+                onClick={() =>
+                  Enable(
+                    params.row.id,
+                    params.row.name.fName,
+                    params.row.name.lName
+                  )
+                }
+              />
+            )}
           </div>
         );
       },
