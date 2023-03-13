@@ -20,7 +20,7 @@ const StextField = ({
             marginRight: 10,
             marginTop: 2,
             marginBottom: 2,
-            width: "120ch",
+            width: "80ch",
           },
         }}
         noValidate

@@ -1,138 +1,85 @@
+import Consumer from "../../../services/Consumer";
 import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
-import Consumer from "../../../services/Consumer";
-import VerifiedIcon from "@mui/icons-material/Verified";
-import Sbutton from "../../Sbutton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import Button from "@mui/material/Button";
 
-import useStyles from "./style";
-import { LinearProgress } from "@mui/material";
-
-// Component to show when no users available on search
-const CustomNoRowsOverlay = () => {
-  const classes = useStyles();
-  return (
-    <div className={classes.noRows}>
-      <p>No Users Found</p>
-    </div>
-  );
-};
-
-// Component to show users in datagrid
 const Userlist = () => {
   const [consumers, setConsumers] = useState([]);
-  const classes = useStyles();
 
-  const rows = consumers.map((user) => {
-    return {
-      id: user?._id,
-      name: user?.name?.fName + " " + user?.name?.lName,
-      rating:
-        parseFloat((user?.totalRating / user?.ratingCount).toFixed(2)) || 0,
-      isDisabled: user?.isDisabled ? "Yes" : "No",
-      mobile: user?.contact?.mobile,
-      email: user?.contact?.email,
-      ratingCount: user?.ratingCount,
-      verified: user.verification ? user.verification.isAccepted : false,
-    };
-  });
-
-  const columns = [
-    {
-      field: "user",
-      headerName: "User",
-      width: 300,
-      sortable: false,
-      renderCell: (params) => {
-        return (
-          <div className={classes.userName}>
-            {params.row.name}
-            {params.row.verified && (
-              <VerifiedIcon className={classes.verifiedIcon} />
-            )}
-          </div>
-        );
-      },
-    },
-    {
-      field: "job",
-      headerName: "Job",
-      width: 150,
-
-      sortable: false,
-    },
-    { field: "rating", headerName: "Average Rating", width: 120 },
-    { field: "ratingCount", headerName: "No of Ratings", width: 120 },
-    { field: "mobile", headerName: "Mobile No", width: 120, sortable: false },
-    {
-      field: "email",
-      headerName: "Email",
-      width: 250,
-      sortable: false,
-    },
-    {
-      field: "isDisabled",
-      headerName: "Disabled",
-      width: 100,
-      sortable: false,
-    },
-    {
-      field: "verifiedText",
-      headerName: "Verified",
-      width: 100,
-      sortable: false,
-    },
-    {
-      field: "Action",
-      headerName: "Action",
-      width: 150,
-      sortable: false,
-      renderCell: (params) => {
-        const profileId = params.row.id;
-        const profileName = params.row.name;
-        const verified = params.row.verified;
-        return (
-          <div className={classes.actionBtn}>
-            <Link
-              to="/admin/users/profile"
-              state={{ profileId, profileName, verified }}
-              className="link"
-              style={{ marginRight: "5%" }}
-            >
-              <Sbutton text="View" btnWidth="100px" />
-            </Link>
-          </div>
-        );
-      },
-    },
-  ];
-
-  useEffect(() => {
-    fetchUsers();
-  });
-
+  //Retrieving all job types in jobTypeCategory collection. It is done through the connection present in JobCategory in service folder.
   const fetchUsers = () => {
-    Consumer.fetchConsumer()
+    Consumer.fetchUsers()
       .then((response) => {
         setConsumers(response.data);
-        console.log(response.data);
       })
       .catch((e) => {
         console.log(e);
       });
   };
 
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const btnStyle = {
+    width: 1,
+    marginLeft: 15,
+    marginBottom: 10,
+  };
+
+  const rows = consumers.map((consumer) => {
+    return {
+      id: consumer._id,
+      mobile: consumer.mobile,
+      email: consumer.email,
+      //   description: consumer.description,
+      //   providerCount: consumer.poviderCount,
+    };
+  });
+
+  const columns = [
+    { field: "mobile", headerName: "mobile", width: 200 },
+    { field: "email", headerName: "email", width: 200 },
+    // { field: "description", headerName: "Description", width: 350 },
+    // { field: "providerCount", headerName: "No of providers", width: 200 },
+    {
+      field: "Action",
+      headerName: "Action",
+      width: 250,
+      sortable: false,
+      renderCell: (params) => {
+        return (
+          <div>
+            <Link to="/admin/jobs/jobEdit" state={params.row} className="link">
+              <Button variant="contained" style={btnStyle}>
+                <EditIcon fontSize="small" />
+              </Button>
+            </Link>
+
+            <Button variant="contained" style={btnStyle}>
+              <DeleteIcon fontSize="small" />
+            </Button>
+          </div>
+        );
+      },
+    },
+  ];
+
   return (
-    <div className={classes.outerBox}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        disableSelectionOnClick
-        components={{
-          NoRowsOverlay: CustomNoRowsOverlay,
-          LoadingOverlay: LinearProgress,
-        }}
-      />
+    <div
+      style={{
+        height: 500,
+        width: "100%",
+      }}
+    >
+      <div style={{ display: "flex", height: "100%" }}>
+        <div style={{ flexGrow: 1 }}>
+          <DataGrid rows={rows} columns={columns} disableSelectionOnClick />
+        </div>
+      </div>
     </div>
   );
 };
