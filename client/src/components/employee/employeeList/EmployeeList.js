@@ -60,7 +60,7 @@ const EmployeeList = () => {
 
               <CardActions>
                 <Link
-                  to="/admin/thirdParty/thirdPartyProfile"
+                  to="/EditEmployeeDetail"
                   className="link"
                   style={{ marginRight: "5%" }}
                 >

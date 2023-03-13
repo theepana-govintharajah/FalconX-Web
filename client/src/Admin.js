@@ -5,6 +5,7 @@ import Complaints from "./pages/admin/Complaints";
 import DeliveryAgents from "./pages/admin/DeliveryAgents";
 import Shops from "./pages/admin/Shops";
 import Employees from "./pages/admin/Employees";
+import EditEmployeeDetail from "./components/employee/editEmployeeDetails/EditEmployeeDetails";
 import EmployeeRegistration from "./pages/registration/employee/EmployeeRegistration";
 import Layout from "./components/admin/Layout";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -34,6 +35,10 @@ function Admin() {
               <Route path="/shops" element={<Shops />} />
               <Route path="/complaints" element={<Complaints />} />
               <Route path="/employees" element={<Employees />} />
+              <Route
+                path="/EditEmployeeDetail"
+                element={<EditEmployeeDetail />}
+              />
               <Route
                 path="/EmployeeRegistration"
                 element={<EmployeeRegistration />}
