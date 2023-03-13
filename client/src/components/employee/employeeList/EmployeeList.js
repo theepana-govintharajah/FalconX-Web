@@ -5,7 +5,6 @@ import CardContent from "@mui/material/CardContent";
 import { confirm } from "react-confirm-box";
 import Typography from "@mui/material/Typography";
 import Sbutton from "../../Sbutton";
-import { Link } from "react-router-dom";
 import useStyles from "./style";
 import Employee from "../../../services/Employee";
 
@@ -23,6 +22,46 @@ const options = {
 const EmployeeList = () => {
   const [employees, setEmployees] = useState([]);
   const classes = useStyles();
+
+  const disable = async (e, fn, ln) => {
+    //confirmation dialogue box
+    const result = await confirm(
+      "Are you sure to disable " + fn + " " + ln + " ?",
+      options
+    );
+    //if ok is pressed in confirmation dialogue, disabling function will be called
+    if (result) {
+      Employee.disableEnableEmployee(e)
+        .then(() => {
+          fetchUsers();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      return;
+    }
+    //if cancel is pressed in confirmation dialogue box
+    console.log("You click No!");
+  };
+
+  //on click function to Enable third party account and auto rerender of fetchUsers() after button click to see the change
+  const Enable = async (e, fn, ln) => {
+    const result = await confirm(
+      "Are you sure to enable " + fn + " " + ln + " ?",
+      options
+    );
+    if (result) {
+      Employee.disableEnableEmployee(e)
+        .then(() => {
+          fetchUsers();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      return;
+    }
+    console.log("You click No!");
+  };
 
   useEffect(() => {
     fetchUsers();
@@ -66,7 +105,32 @@ const EmployeeList = () => {
               </div>
 
               <CardActions>
-                <Sbutton text="Disable" btnWidth="25ch" />
+                {employee.isDisabled === false && (
+                  <Sbutton
+                    text="Disable"
+                    btnWidth="25ch"
+                    onClick={() =>
+                      disable(
+                        employee._id,
+                        employee.name.fName,
+                        employee.name.lName
+                      )
+                    }
+                  />
+                )}
+                {employee.isDisabled === true && (
+                  <Sbutton
+                    text="Enable"
+                    btnWidth="25ch"
+                    onClick={() =>
+                      Enable(
+                        employee._id,
+                        employee.name.fName,
+                        employee.name.lName
+                      )
+                    }
+                  />
+                )}
               </CardActions>
             </Card>
             <hr style={line} />

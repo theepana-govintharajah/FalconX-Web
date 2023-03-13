@@ -10,7 +10,12 @@ const fetchDeliveryAgents = async () => {
   return await axios.get("http://localhost:5000/deliveryAgent");
 };
 
+const disableEnableEmployee = async (id) => {
+  return await axios.patch(`http://localhost:5000/deliveryAgent/able/${id}`);
+};
+
 export default {
   addNew,
   fetchDeliveryAgents,
+  disableEnableEmployee,
 };
