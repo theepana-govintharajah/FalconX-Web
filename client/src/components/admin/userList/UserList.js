@@ -2,9 +2,7 @@ import Consumer from "../../../services/Consumer";
 import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
-import Button from "@mui/material/Button";
+import Sbutton from "../../Sbutton";
 
 const Userlist = () => {
   const [consumers, setConsumers] = useState([]);
@@ -24,27 +22,21 @@ const Userlist = () => {
     fetchUsers();
   }, []);
 
-  const btnStyle = {
-    width: 1,
-    marginLeft: 15,
-    marginBottom: 10,
-  };
-
   const rows = consumers.map((consumer) => {
     return {
       id: consumer._id,
+      name: consumer.name.fName + " " + consumer.name.lName,
+      district: consumer.address.district,
       mobile: consumer.mobile,
       email: consumer.email,
-      //   description: consumer.description,
-      //   providerCount: consumer.poviderCount,
     };
   });
 
   const columns = [
-    { field: "mobile", headerName: "mobile", width: 200 },
-    { field: "email", headerName: "email", width: 200 },
-    // { field: "description", headerName: "Description", width: 350 },
-    // { field: "providerCount", headerName: "No of providers", width: 200 },
+    { field: "name", headerName: "name", width: 250 },
+    { field: "district", headerName: "district", width: 100, sortable: false },
+    { field: "mobile", headerName: "mobile", width: 150, sortable: false },
+    { field: "email", headerName: "email", width: 200, sortable: false },
     {
       field: "Action",
       headerName: "Action",
@@ -54,14 +46,11 @@ const Userlist = () => {
         return (
           <div>
             <Link to="/admin/jobs/jobEdit" state={params.row} className="link">
-              <Button variant="contained" style={btnStyle}>
-                <EditIcon fontSize="small" />
-              </Button>
+              <Sbutton text="View" btnWidth="70px" marginRight="10px" />
             </Link>
-
-            <Button variant="contained" style={btnStyle}>
-              <DeleteIcon fontSize="small" />
-            </Button>
+            <Link to="/admin/jobs/jobEdit" state={params.row} className="link">
+              <Sbutton text="Disable" btnWidth="70px" marginLeft="20px" />
+            </Link>
           </div>
         );
       },
