@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import BasicCard from "../../../components/BasicCard";
 
-import useStyles from "./styles";
+import useStyles from "./style";
 
 const Dashboard = () => {
   const classes = useStyles();
