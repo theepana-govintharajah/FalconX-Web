@@ -1,17 +1,17 @@
-import Consumer from "../../../services/Consumer";
+import Shop from "../../../services/Shop";
 import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import Sbutton from "../../Sbutton";
 
 const Shoplist = () => {
-  const [consumers, setConsumers] = useState([]);
+  const [shops, setShops] = useState([]);
 
   //Retrieving all job types in jobTypeCategory collection. It is done through the connection present in JobCategory in service folder.
-  const fetchUsers = () => {
-    Consumer.fetchUsers()
+  const fetchShops = () => {
+    Shop.fetchShops()
       .then((response) => {
-        setConsumers(response.data);
+        setShops(response.data);
       })
       .catch((e) => {
         console.log(e);
@@ -19,16 +19,16 @@ const Shoplist = () => {
   };
 
   useEffect(() => {
-    fetchUsers();
+    fetchShops();
   }, []);
 
-  const rows = consumers.map((consumer) => {
+  const rows = shops.map((shop) => {
     return {
-      id: consumer._id,
-      name: consumer.name.fName + " " + consumer.name.lName,
-      district: consumer.address.district,
-      mobile: consumer.mobile,
-      email: consumer.email,
+      id: shop._id,
+      name: shop.shopName,
+      district: shop.address.district,
+      mobile: shop.mobile,
+      email: shop.email,
     };
   });
 
