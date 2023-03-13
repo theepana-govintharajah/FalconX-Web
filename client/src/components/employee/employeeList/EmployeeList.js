@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material//CardMedia";
+import { confirm } from "react-confirm-box";
 import Typography from "@mui/material/Typography";
 import Sbutton from "../../Sbutton";
 import { Link } from "react-router-dom";
@@ -11,6 +11,13 @@ import Employee from "../../../services/Employee";
 
 const line = {
   backgroundColor: "#ffffff",
+};
+
+const options = {
+  labels: {
+    confirmable: "Confirm",
+    cancellable: "Cancel",
+  },
 };
 
 const EmployeeList = () => {
