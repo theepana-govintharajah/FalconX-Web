@@ -29,7 +29,7 @@ const Layout = ({ children }) => {
       icon: <DashboardOutlined />,
     },
     {
-      text: "Users",
+      text: "Customers",
       path: "/users",
       icon: <PeopleAltOutlined />,
     },
@@ -37,6 +37,16 @@ const Layout = ({ children }) => {
       text: "Employees",
       path: "/employees",
       icon: <PeopleAltOutlined />,
+    },
+    {
+      text: "DeliveryAgents",
+      path: "/deliveryAgents",
+      icon: <PeopleAltOutlined />,
+    },
+    {
+      text: "Shops",
+      path: "/shops",
+      icon: <WorkOutline />,
     },
     {
       text: "Orders",

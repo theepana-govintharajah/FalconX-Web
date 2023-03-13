@@ -2,6 +2,8 @@ import Dashboard from "./pages/admin/Dashboard";
 import Users from "./pages/admin/Users";
 import Orders from "./pages/admin/Orders";
 import Complaints from "./pages/admin/Complaints";
+import DeliveryAgents from "./pages/admin/DeliveryAgents";
+import Shops from "./pages/admin/Shops";
 import Employees from "./pages/admin/Employees";
 import EmployeeRegistration from "./pages/registration/employee/EmployeeRegistration";
 import Layout from "./components/admin/Layout";
@@ -26,7 +28,9 @@ function Admin() {
             <Routes>
               <Route exact path="/" element={<Dashboard />} />
               <Route path="/users" element={<Users />} />
+              <Route path="/deliveryAgents" element={<DeliveryAgents />} />
               <Route path="/orders" element={<Orders />} />
+              <Route path="/shops" element={<Shops />} />
               <Route path="/complaints" element={<Complaints />} />
               <Route path="/employees" element={<Employees />} />
               <Route
