@@ -82,19 +82,19 @@ const Shoplist = () => {
 
   const columns = [
     { field: "name", headerName: "name", width: 250 },
-    { field: "district", headerName: "district", width: 100, sortable: false },
-    { field: "mobile", headerName: "mobile", width: 150, sortable: false },
+    { field: "district", headerName: "district", width: 200, sortable: false },
+    { field: "mobile", headerName: "mobile", width: 200, sortable: false },
     { field: "email", headerName: "email", width: 200, sortable: false },
     {
       field: "Action",
       headerName: "Action",
-      width: 250,
+      width: 300,
       sortable: false,
       renderCell: (params) => {
         return (
           <div>
             <Link to="/admin/jobs/jobEdit" state={params.row} className="link">
-              <Sbutton text="View" btnWidth="70px" marginRight="10px" />
+              <Sbutton text="View" btnWidth="15ch" marginRight="10px" />
             </Link>
             {params.row.isDisabled === false && (
               <Sbutton
