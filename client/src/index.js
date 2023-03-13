@@ -5,14 +5,12 @@ import Admin from "./Admin";
 import Employee from "./Employee";
 import Registartion from "./Registration";
 import reportWebVitals from "./reportWebVitals";
-import EmployeeRegistration from "./pages/registration/employee/EmployeeRegistration";
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Admin /> */}
+    <Admin />
     {/* <Employee /> */}
-    <Registartion />
-    {/* <EmployeeRegistration /> */}
+    {/* <Registartion /> */}
   </React.StrictMode>,
   document.getElementById("root")
 );
