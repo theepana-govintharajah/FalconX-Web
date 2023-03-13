@@ -1,5 +1,5 @@
 import Sbutton from "../../components/Sbutton";
-import EmployeeList from "../../components/admin/EmployeeList";
+import EmployeeList from "../../components/admin/employeeList/EmployeeList";
 import { Link } from "react-router-dom";
 
 const Employees = () => {

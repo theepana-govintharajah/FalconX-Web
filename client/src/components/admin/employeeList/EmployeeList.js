@@ -4,10 +4,10 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material//CardMedia";
 import Typography from "@mui/material/Typography";
-import Sbutton from "../Sbutton";
+import Sbutton from "../../Sbutton";
 import { Link } from "react-router-dom";
 import useStyles from "./style";
-import Employee from "../../services/Employee";
+import Employee from "../../../services/Employee";
 
 const line = {
   backgroundColor: "#ffffff",
