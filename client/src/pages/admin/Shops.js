@@ -1,5 +1,11 @@
+import Shoplist from "../../components/admin/shopList/ShopList";
+
 const Shops = () => {
-  return <div>Shops</div>;
+  return (
+    <div>
+      <Shoplist />
+    </div>
+  );
 };
 
 export default Shops;
