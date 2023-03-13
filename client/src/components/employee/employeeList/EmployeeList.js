@@ -59,15 +59,7 @@ const EmployeeList = () => {
               </div>
 
               <CardActions>
-                <Link
-                  to="/EditEmployeeDetail"
-                  className="link"
-                  style={{ marginRight: "5%" }}
-                >
-                  <Sbutton text="Edit" btnWidth="45%" />
-                </Link>
-
-                <Sbutton text="Disable" btnWidth="15%" />
+                <Sbutton text="Disable" btnWidth="25ch" />
               </CardActions>
             </Card>
             <hr style={line} />
