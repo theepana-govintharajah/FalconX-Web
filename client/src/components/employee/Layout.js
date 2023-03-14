@@ -34,8 +34,8 @@ const Layout = ({ children }) => {
       icon: <PeopleAltOutlined />,
     },
     {
-      text: "Businesses",
-      path: "/businesses",
+      text: "Shops",
+      path: "/shops",
       icon: <WorkOutline />,
     },
     {
