@@ -7,7 +7,7 @@ import ListItemText from "@mui/material/ListItemText";
 
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import {
   DashboardOutlined,
@@ -21,7 +21,6 @@ import useStyles from "../../styles/styles";
 const Layout = ({ children }) => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const menuItems = [
     {
@@ -30,25 +29,11 @@ const Layout = ({ children }) => {
       icon: <DashboardOutlined />,
     },
     {
-      text: "Customers",
-      path: "/users",
-      icon: <PeopleAltOutlined />,
-    },
-    {
-      text: "Employees",
-      path: "/employees",
-      icon: <PeopleAltOutlined />,
-    },
-    {
-      text: "DeliveryAgents",
-      path: "/deliveryAgents",
-      icon: <PeopleAltOutlined />,
-    },
-    {
-      text: "Shops",
-      path: "/shops",
+      text: "Item",
+      path: "/item",
       icon: <WorkOutline />,
     },
+
     {
       text: "Orders",
       path: "/orders",
@@ -93,9 +78,7 @@ const Layout = ({ children }) => {
             <ListItem
               button
               key={item.text}
-              selected={item.path === location.pathname}
               onClick={() => navigate(item.path)}
-              className={classes.activeListItem}
             >
               <ListItemIcon style={{ color: "white" }}>
                 {item.icon}
