@@ -6,8 +6,14 @@ import CardActions from "@mui/material/CardActions";
 import Sbutton from "../../Sbutton";
 import CardMedia from "@mui/material/CardMedia";
 import { Link } from "react-router-dom";
+import Item from "../../../services/Item";
 
 const BasicCard = ({ item }) => {
+  const onDelete = async (e) => {
+    Item.deleteItem(item._id);
+    window.location.reload(false);
+  };
+
   return (
     <Box>
       <Card variant="outlined" sx={{ minHeight: 300, minWidth: 355 }}>
@@ -41,7 +47,12 @@ const BasicCard = ({ item }) => {
             <Sbutton text="Edit" btnWidth="15ch" marginLeft="5ch" />
           </Link>
 
-          <Sbutton text="Delete" btnWidth="15ch" marginLeft="3ch" />
+          <Sbutton
+            text="Delete"
+            btnWidth="15ch"
+            marginLeft="3ch"
+            onClick={onDelete}
+          />
         </CardActions>
       </Card>
     </Box>

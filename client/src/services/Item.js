@@ -10,7 +10,17 @@ const fetchItems = async () => {
   return await axios.get("http://localhost:5000/item");
 };
 
+const updateItem = async (id) => {
+  return await axios.patch(`http://localhost:5000/item/profileUpdate/${id}`);
+};
+
+const deleteItem = async (id) => {
+  return await axios.delete(`http://localhost:5000/item/profileDelete/${id}`);
+};
+
 export default {
   addNew,
   fetchItems,
+  updateItem,
+  deleteItem,
 };
