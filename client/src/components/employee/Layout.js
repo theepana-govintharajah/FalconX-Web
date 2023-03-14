@@ -29,11 +29,15 @@ const Layout = ({ children }) => {
       icon: <DashboardOutlined />,
     },
     {
-      text: "Users",
-      path: "/users",
+      text: "Delivery Agents",
+      path: "/deliveryAgents",
       icon: <PeopleAltOutlined />,
     },
-
+    {
+      text: "Businesses",
+      path: "/businesses",
+      icon: <WorkOutline />,
+    },
     {
       text: "Orders",
       path: "/orders",

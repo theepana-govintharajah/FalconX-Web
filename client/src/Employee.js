@@ -1,5 +1,6 @@
 import Dashboard from "./pages/employee/Dashboard";
-import Users from "./pages/employee/Users";
+import DeliveryAgents from "./pages/employee/DeliveryAgents";
+import Businesses from "./pages/employee/Businesses";
 import Orders from "./pages/employee/Orders";
 import Complaints from "./pages/employee/Complaints";
 import Layout from "./components/employee/Layout";
@@ -25,9 +26,10 @@ function Employee() {
           <div className="App">
             <Routes>
               <Route exact path="/" element={<Dashboard />} />
-              <Route path="/users" element={<Users />} />
+              <Route path="/deliveryAgents" element={<DeliveryAgents />} />
               <Route path="/orders" element={<Orders />} />
               <Route path="/complaints" element={<Complaints />} />
+              <Route path="/businesses" element={<Businesses />} />
             </Routes>
           </div>
         </Layout>
