@@ -1,5 +1,11 @@
+import ItemList from "../../components/consumer/itemList/ItemList";
+
 const Dashboard = () => {
-  return <div>Dashboard</div>;
+  return (
+    <div>
+      <ItemList />
+    </div>
+  );
 };
 
 export default Dashboard;
