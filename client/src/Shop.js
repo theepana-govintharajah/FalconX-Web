@@ -3,6 +3,7 @@ import Item from "./pages/shop/Item";
 import ItemRegistration from "./pages/registration/item/ItemRegistration";
 import Orders from "./pages/shop/Orders";
 import Complaints from "./pages/shop/Complaints";
+import EditItem from "./components/shop/editItem/EditItem";
 import Layout from "./components/shop/Layout";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -26,6 +27,7 @@ function Employee() {
             <Routes>
               <Route exact path="/" element={<Dashboard />} />
               <Route path="/item" element={<Item />} />
+              <Route path="/editItem" element={<EditItem />} />
               <Route path="/orders" element={<Orders />} />
               <Route path="/complaints" element={<Complaints />} />
               <Route path="/itemRegistration" element={<ItemRegistration />} />

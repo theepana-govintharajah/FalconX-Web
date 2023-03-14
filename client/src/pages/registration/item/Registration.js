@@ -15,6 +15,7 @@ const Registration = () => {
   const [inputs, setInputs] = useState({});
   const [errors, setErrors] = useState({});
   const classes = useStyles();
+  const shopId = "63feec359bf614156da487db";
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -55,7 +56,11 @@ const Registration = () => {
     e.preventDefault();
     if (validate()) {
       console.log("validation");
-      Item.addNew(inputs).then(function (response) {
+      const payload = {
+        ...inputs,
+        shopId: shopId,
+      };
+      Item.addNew(payload).then(function (response) {
         console.log(response.data);
         window.location.reload(false);
       });

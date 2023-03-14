@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import CardActions from "@mui/material/CardActions";
 import Sbutton from "../../Sbutton";
 import CardMedia from "@mui/material/CardMedia";
+import { Link } from "react-router-dom";
 
 const BasicCard = ({ text1, price, quantity, description }) => {
   return (
@@ -31,7 +32,15 @@ const BasicCard = ({ text1, price, quantity, description }) => {
         </CardContent>
 
         <CardActions>
-          <Sbutton text="Edit" btnWidth="15ch" marginLeft="5ch" />
+          <Link
+            to="/editItem"
+            // state={thirdParty}
+            className="link"
+            style={{ marginRight: "5%" }}
+          >
+            <Sbutton text="Edit" btnWidth="15ch" marginLeft="5ch" />
+          </Link>
+
           <Sbutton text="Delete" btnWidth="15ch" marginLeft="3ch" />
         </CardActions>
       </Card>

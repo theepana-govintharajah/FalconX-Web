@@ -9,9 +9,9 @@ import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Shop /> */}
+    <Shop />
     {/* <Admin /> */}
-    <Employee />
+    {/* <Employee /> */}
     {/* <Registartion /> */}
   </React.StrictMode>,
   document.getElementById("root")
