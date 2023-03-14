@@ -10,8 +10,11 @@ const fetchItems = async () => {
   return await axios.get("http://localhost:5000/item");
 };
 
-const updateItem = async (id) => {
-  return await axios.patch(`http://localhost:5000/item/profileUpdate/${id}`);
+const updateItem = async (id, data) => {
+  return await axios.patch(
+    `http://localhost:5000/item/profileUpdate/${id}`,
+    data
+  );
 };
 
 const deleteItem = async (id) => {

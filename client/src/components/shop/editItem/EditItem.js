@@ -1,12 +1,9 @@
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
-import Typography from "@mui/material/Typography";
 import StextField from "../../StextField";
 import Sbutton from "../../Sbutton";
 import Item from "../../../services/Item";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import TextField from "@mui/material/TextField";
 import { confirm } from "react-confirm-box";
 
 const EditItem = () => {
@@ -20,8 +17,6 @@ const EditItem = () => {
 
   const [inputs, setInputs] = useState({});
   const [errors, setErrors] = useState({});
-  const [open, setOpen] = useState(false);
-  const [alert, setAlert] = useState("");
 
   const options = {
     labels: {
@@ -78,7 +73,6 @@ const EditItem = () => {
           .then(() => {
             console.log(ID);
             console.log(inputs);
-            setInputs({});
             routeChange();
           })
           .catch((e) => {
