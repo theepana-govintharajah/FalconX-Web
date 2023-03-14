@@ -16,6 +16,7 @@ const Registration = () => {
   const [errors, setErrors] = useState({});
   const classes = useStyles();
   const shopId = "63feec359bf614156da487db";
+  // const shopId = "63feec359bf614156da487db";
 
   const handleChange = (event) => {
     const name = event.target.name;
