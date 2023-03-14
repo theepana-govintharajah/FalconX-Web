@@ -7,7 +7,7 @@ const Item = () => {
     <div>
       <br /> <br />
       <Link to="/ItemRegistration" className="link">
-        <Sbutton text="Add New" btnWidth="25%" />
+        <Sbutton text="Add New Item" btnWidth="25%" />
       </Link>
       <br /> <br />
       <ItemList />

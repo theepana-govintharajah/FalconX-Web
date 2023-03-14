@@ -1,38 +1,3 @@
-// import { Grid } from "@mui/material";
-// import BasicCard from "../../../components/BasicCard";
-
-// import useStyles from "./style";
-
-// const ItemList = () => {
-//   const classes = useStyles();
-//   return (
-//     <div>
-//       <Grid container spacing={4} className={classes.gridContainer}>
-//         <Grid item xs={4}>
-//           <BasicCard text="Total Businesses" count="3" />
-//         </Grid>
-//         <Grid item xs={4}>
-//           <BasicCard text="Total Delivery Agents" count="3" />
-//         </Grid>
-//         <Grid item xs={4}>
-//           <BasicCard text="Total Customers" count="3" />
-//         </Grid>
-//         <Grid item xs={4}>
-//           <BasicCard text="Completed Orders" count="3" />
-//         </Grid>
-//         <Grid item xs={4}>
-//           <BasicCard text="Pending Orders" count="3" />
-//         </Grid>
-//         <Grid item xs={4}>
-//           <BasicCard text="Pending Complaints" count="3" />
-//         </Grid>
-//       </Grid>
-//     </div>
-//   );
-// };
-
-// export default ItemList;
-
 import { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -42,10 +7,8 @@ import Typography from "@mui/material/Typography";
 import Sbutton from "../../Sbutton";
 import useStyles from "./style";
 import Item from "../../../services/Item";
-
-const line = {
-  backgroundColor: "#ffffff",
-};
+import { Grid } from "@mui/material";
+import BasicCard from "../../../components/shop/CardForItem/BasicCard";
 
 const options = {
   labels: {
@@ -74,29 +37,18 @@ const ItemList = () => {
   };
 
   return (
-    <div>
+    <Grid container spacing={4}>
       {items.map((item) => (
-        <div key={item._id}>
-          <>
-            <Card className={classes.root}>
-              <div className={classes.content}>
-                <CardContent className={classes.details}>
-                  <Typography gutterBottom variant="h5" component="div">
-                    gdfgf
-                  </Typography>
-                </CardContent>
-              </div>
-
-              <CardActions>
-                <Sbutton text="Edit" btnWidth="15ch" />
-                <Sbutton text="Delete" btnWidth="15ch" />
-              </CardActions>
-            </Card>
-            <hr style={line} />
-          </>
-        </div>
+        <Grid key={item._id} item xs={12} sm={8} md={6} lg={4}>
+          <BasicCard
+            text1={item.itemCode}
+            price={item.price}
+            quantity={item.quantity}
+            description={item.description}
+          />
+        </Grid>
       ))}
-    </div>
+    </Grid>
   );
 };
 
