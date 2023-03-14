@@ -5,13 +5,21 @@ import Typography from "@mui/material/Typography";
 import CardActions from "@mui/material/CardActions";
 import Sbutton from "../../Sbutton";
 import CardMedia from "@mui/material/CardMedia";
-import { Link } from "react-router-dom";
-import Item from "../../../services/Item";
+import Order from "../../../services/Order";
 
 const BasicCard = ({ item }) => {
-  const onDelete = async (e) => {
-    Item.deleteItem(item._id);
-    window.location.reload(false);
+  const consumerId = "6410a8824010c95cb9c848c1";
+  const onSubmit = async (e) => {
+    const orderData = {
+      price: item.price,
+      shopId: item.shopId,
+      itemId: item._id,
+      consumerId: consumerId,
+    };
+
+    Order.addNew(orderData).then(function (response) {
+      console.log(response.data);
+    });
   };
 
   return (
@@ -40,7 +48,7 @@ const BasicCard = ({ item }) => {
             text="Place Order"
             btnWidth="25ch"
             marginLeft="10ch"
-            onClick={onDelete}
+            onClick={onSubmit}
           />
         </CardActions>
       </Card>
