@@ -5,9 +5,11 @@ import Complaints from "./pages/employee/Complaints";
 import Layout from "./components/employee/Layout";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { dark } from "@mui/material/styles/createPalette";
 
 const theme = createTheme({
   palette: {
+    mode: "dark",
     primary: {
       main: "#673ab7",
       light: "#1F2221",

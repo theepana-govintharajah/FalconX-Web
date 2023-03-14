@@ -10,6 +10,7 @@ const Item = () => {
         <Sbutton text="Add New Item" btnWidth="25%" />
       </Link>
       <br /> <br />
+      <br /> <br />
       <ItemList />
     </div>
   );
