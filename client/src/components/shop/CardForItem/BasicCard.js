@@ -7,7 +7,7 @@ import Sbutton from "../../Sbutton";
 import CardMedia from "@mui/material/CardMedia";
 import { Link } from "react-router-dom";
 
-const BasicCard = ({ text1, price, quantity, description }) => {
+const BasicCard = ({ item }) => {
   return (
     <Box>
       <Card variant="outlined" sx={{ minHeight: 300, minWidth: 355 }}>
@@ -19,22 +19,22 @@ const BasicCard = ({ text1, price, quantity, description }) => {
         />
         <CardContent>
           <Typography variant="h5" textAlign="center">
-            {text1}
+            {item.itemCode}
           </Typography>
           <br />
           <Typography variant="h6">
-            Price: Rs {price}
+            Price: Rs {item.price}
             <br />
-            Quantity: {quantity}
+            Quantity: {item.quantity}
             <br />
-            Description: {description}
+            Description: {item.description}
           </Typography>
         </CardContent>
 
         <CardActions>
           <Link
             to="/editItem"
-            // state={thirdParty}
+            state={item}
             className="link"
             style={{ marginRight: "5%" }}
           >
