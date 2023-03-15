@@ -1,5 +1,11 @@
+import OrderList from "../../components/admin/orderList/OrderList";
+
 const Orders = () => {
-  return <div>Orders</div>;
+  return (
+    <div>
+      <OrderList />
+    </div>
+  );
 };
 
 export default Orders;
