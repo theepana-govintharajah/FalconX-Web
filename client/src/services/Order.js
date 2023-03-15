@@ -25,10 +25,15 @@ const fetchUnhandledOrdersBasedShop = async (shopId) => {
   );
 };
 
+const fetchOrdersBasedDistrict = async (district) => {
+  return await axios.get(`http://localhost:5000/order/placed/${district}`);
+};
+
 export default {
   addNew,
   fetchOrders,
   fetchOrdersBasedConsumers,
   fetchOrdersBasedShop,
   fetchUnhandledOrdersBasedShop,
+  fetchOrdersBasedDistrict,
 };
