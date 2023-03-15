@@ -8,7 +8,7 @@ import { confirm } from "react-confirm-box";
 const Shoplist = () => {
   const [shops, setShops] = useState([]);
 
-  const district = "Galle";
+  const district = "Colombo";
 
   const options = {
     labels: {
@@ -35,7 +35,7 @@ const Shoplist = () => {
     return {
       id: shop._id,
       name: shop.shopName,
-      district: shop.address.district,
+      ownerName: shop.ownerName,
       mobile: shop.mobile,
       email: shop.email,
       isDisabled: shop.isDisabled,
@@ -43,8 +43,8 @@ const Shoplist = () => {
   });
 
   const columns = [
-    { field: "name", headerName: "name", width: 250 },
-    { field: "district", headerName: "district", width: 200, sortable: false },
+    { field: "name", headerName: "Shop Name", width: 250 },
+    { field: "ownerName", headerName: "Owner Name", width: 250 },
     { field: "mobile", headerName: "mobile", width: 200, sortable: false },
     { field: "email", headerName: "email", width: 200, sortable: false },
     {
