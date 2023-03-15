@@ -7,6 +7,7 @@ import { confirm } from "react-confirm-box";
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
+  const ID = "6410a8824010c95cb9c848c1";
 
   const options = {
     labels: {
@@ -16,7 +17,7 @@ const OrderList = () => {
   };
 
   const fetchOrders = () => {
-    Order.fetchOrders()
+    Order.fetchOrdersBasedConsumers(ID)
       .then((response) => {
         setOrders(response.data);
       })
