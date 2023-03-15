@@ -9,6 +9,7 @@ import Order from "../../../services/Order";
 
 const BasicCard = ({ item }) => {
   const consumerId = "6410a8824010c95cb9c848c1";
+  //const consumerId = "6410a90e4010c95cb9c848c3";
   const onSubmit = async (e) => {
     const orderData = {
       price: item.price,
@@ -19,6 +20,7 @@ const BasicCard = ({ item }) => {
 
     Order.addNew(orderData).then(function (response) {
       console.log(response.data);
+      window.alert("Order placed successfully!");
     });
   };
 

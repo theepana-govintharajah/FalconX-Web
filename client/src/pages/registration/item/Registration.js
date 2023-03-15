@@ -1,7 +1,7 @@
 import React from "react";
 import Item from "../../../services/Item";
-import { useState, useEffect } from "react";
-import { useReducer } from "react";
+import { useState } from "react";
+
 import StextField from "../../../components/StextField";
 
 import Button from "@mui/material//Button";
@@ -15,8 +15,8 @@ const Registration = () => {
   const [inputs, setInputs] = useState({});
   const [errors, setErrors] = useState({});
   const classes = useStyles();
-  const shopId = "63feec359bf614156da487db";
-  // const shopId = "63feec359bf614156da487db";
+  const shopId = "6410ac144010c95cb9c848d5";
+  // const shopId = "6410ac644010c95cb9c848d7";
 
   const handleChange = (event) => {
     const name = event.target.name;
